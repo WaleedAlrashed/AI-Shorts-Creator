@@ -20,14 +20,16 @@ Cell 1: Installing necessary libraries
 from pytube import YouTube
 import cv2
 import subprocess
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key='')
 import numpy as np
 import json
 import math
 import pdb
 
 from youtube_transcript_api import YouTubeTranscriptApi
-openai.api_key = ''  # Replace with your actual OpenAI API key
+  # Replace with your actual OpenAI API key
 
 """Cell 3: Download YouTube Video function"""
 
@@ -328,14 +330,12 @@ def analyze_transcript(transcript):
         {"role": "system", "content": "You are a ViralGPT helpful assistant. You are master at reading youtube transcripts and identifying the most Interesting and Viral Content"},
         {"role": "user", "content": prompt}
     ]
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=messages,
-        max_tokens=512,
-        n=1,
-        stop=None
-    )
-    return response.choices[0]['message']
+    response = client.chat.completions.create(model="gpt-4",
+    messages=messages,
+    max_tokens=512,
+    n=1,
+    stop=None)
+    return response.choices[0].message
 
 """Main function and execution"""
 
