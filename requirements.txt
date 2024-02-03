@@ -1,4 +1,8 @@
-pytube
-opencv-python
-openai
+pytube~=15.0.0
+opencv-python~=4.9.0.80
+openai~=1.10.0
 youtube-transcript-api
+
+ffmpeg~=1.4
+google~=3.0.0
+numpy~=1.26.3
